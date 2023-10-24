@@ -2,7 +2,7 @@
 
 #' @name Lista_Observaciones_x_Colector
 #'
-#' @param Relacion_General_Observaciones Conjunto de datos del consolidado general de observaciones
+#' @param Relacion.General.Observaciones Conjunto de datos del consolidado general de observaciones
 #'
 #'
 #' @description Esta función crea una lista con las observaciones por cada colector.
@@ -16,12 +16,12 @@
 
 
 
-Lista_Observaciones_x_Colector <- function(Relacion_General_Observaciones) {
+Lista_Observaciones_x_Colector <- function(Relacion.General.Observaciones) {
 
-  Observaciones_x_Colector <-
-    Relacion_General_Observaciones |>
+  Observaciones.x.Colector <-
+    Relacion.General.Observaciones |>
     dplyr::group_by(.data$colector, .add = TRUE) |>
     dplyr::group_map(.f = ~ dplyr::select_if(.x, ~ !all(is.na(.))), .keep = TRUE)
 
-  invisible(Observaciones_x_Colector)
+  invisible(Observaciones.x.Colector)
 }

@@ -4,10 +4,10 @@
 \alias{Datos_Elevacion}
 \title{Datos Elevaciones Datos Evaluados}
 \usage{
-Datos_Elevacion(Datos_Evaluar_SF)
+Datos_Elevacion(Datos.Evaluar.SF)
 }
 \arguments{
-\item{Datos_Evaluar_SF}{Conjunto de datos para evaluar con características espaciales.}
+\item{Datos.Evaluar.SF}{Conjunto de datos para evaluar con características espaciales.}
 }
 \value{
 Retorna una tabla con el número de registro y las altitudes registradas y calculadas.

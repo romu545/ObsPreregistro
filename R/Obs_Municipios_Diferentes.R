@@ -2,8 +2,8 @@
 
 #' @name Obs_Municipios_Diferentes
 #'
-#' @param Datos_Evaluar_SF Conjunto de datos para evaluar con características espaciales.
-#' @param Mpio_shp Capa de municipios
+#' @param Datos.Evaluar.SF Conjunto de datos para evaluar con características espaciales.
+#' @param Mpio.shp Capa de municipios
 #'
 #' @description Esta función permite generar observaciones cuando las coordenadas ubican
 #' las coordenadas pre-registras en un municipio distinto al seleccionado.
@@ -18,12 +18,12 @@
 #'
 #' @export
 
-Obs_Municipios_Diferentes <- function(Datos_Evaluar_SF, Mpio_shp) {
+Obs_Municipios_Diferentes <- function(Datos.Evaluar.SF, Mpio.shp) {
 
   Geometrias_Intersectadas <-
     sf::st_join(
-      x = Datos_Evaluar_SF,
-      y = Mpio_shp,
+      x = Datos.Evaluar.SF,
+      y = Mpio.shp,
       join = sf::st_intersects) |>
     tibble::as_tibble()
 

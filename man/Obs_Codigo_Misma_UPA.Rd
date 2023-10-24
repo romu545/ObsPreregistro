@@ -6,14 +6,14 @@
 \alias{Obs_Coordenadas_Repetidas}
 \title{Observaciones Otros Códigos Misma UPA}
 \usage{
-Obs_Codigo_Misma_UPA(Datos_Evaluar, Datos_Preregistro)
+Obs_Codigo_Misma_UPA(Datos.Evaluar, Datos.Preregistro)
 
-Obs_Coordenadas_Repetidas(Datos_Evaluar)
+Obs_Coordenadas_Repetidas(Datos.Evaluar)
 }
 \arguments{
-\item{Datos_Evaluar}{Conjunto de datos para evaluar.}
+\item{Datos.Evaluar}{Conjunto de datos para evaluar.}
 
-\item{Datos_Preregistro}{Conjunto de datos de todos los pre-registros.}
+\item{Datos.Preregistro}{Conjunto de datos de todos los pre-registros.}
 }
 \value{
 Retorna una tabla con el número de registro y sus respectivas observaciones.

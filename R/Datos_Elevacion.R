@@ -2,7 +2,7 @@
 
 #' @name Datos_Elevacion
 #'
-#' @param Datos_Evaluar_SF Conjunto de datos para evaluar con características espaciales.
+#' @param Datos.Evaluar.SF Conjunto de datos para evaluar con características espaciales.
 #'
 #' @description Esta función permite obtener la altitud de las coordenadas evaluadas
 #' mediante por fuera el modelo digital de elevación de AWS.
@@ -18,23 +18,23 @@
 #' @export
 
 
-Datos_Elevacion <- function(Datos_Evaluar_SF) {
+Datos_Elevacion <- function(Datos.Evaluar.SF) {
 
   Elevaciones <-
     elevatr::get_elev_point(
-      Datos_Evaluar_SF,
+      Datos.Evaluar.SF,
       prj = "EPSG:4326",
       src = "aws",
       z = 10) |>
     dplyr::select(.data$elevation)
 
-  Datos_Elevacion <-
+  Datos.Elevacion <-
     cbind(
-      Datos_Evaluar_SF,
+      Datos.Evaluar.SF,
       Elevaciones) |>
     tibble::as_tibble() |>
     dplyr::select(c("registro", "altitud", "elevation"))
 
-  invisible(Datos_Elevacion)
+  invisible(Datos.Elevacion)
 
 }

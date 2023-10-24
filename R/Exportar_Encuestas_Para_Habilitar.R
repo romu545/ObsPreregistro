@@ -2,8 +2,8 @@
 
 #' @name Exportar_Encuestas_Para_Habilitar
 #'
-#' @param Lista_Observaciones_x_Colector Lista con las observaciones de cada colector.
-#' @param Vector_Para_Filtro Vector booleano para filtrar los pre-registros que no posean
+#' @param Lista.Observaciones.x.Colector Lista con las observaciones de cada colector.
+#' @param Vector.Para.Filtro Vector booleano para filtrar los pre-registros que no posean
 #' observaciones
 #' param Semana Cadena de texto indicando la semana o semanas evaluadas.
 #'   * `Semana_1`
@@ -25,8 +25,8 @@
 
 
 Exportar_Encuestas_Para_Habilitar <- function(
-    Lista_Observaciones_x_Colector,
-    Vector_Para_Filtro) {
+    Lista.Observaciones.x.Colector,
+    Vector.Para.Filtro) {
 
   purrr::map2(
     .x = Lista_Observaciones_x_Colector,

@@ -2,8 +2,8 @@
 
 #' @name Exportar_Observaciones_x_Colector
 #'
-#' @param Lista_Observaciones_x_Colector Lista con las observaciones de cada colector.
-#' @param Vector_Para_Filtro Vector booleano para filtrar los pre-registros que si posean
+#' @param Lista.Observaciones.x.Colector Lista con las observaciones de cada colector.
+#' @param Vector.Para.Filtro Vector booleano para filtrar los pre-registros que si posean
 #' observaciones
 #' param Semana Cadena de texto indicando la semana o semanas evaluadas.
 #'   * `Semana_1`
@@ -26,23 +26,23 @@
 #' @export
 
 Exportar_Observaciones_x_Colector <- function(
-    Lista_Observaciones_x_Colector,
-    Vector_Para_Filtro) {
+    Lista.Observaciones.x.Colector,
+    Vector.Para.Filtro) {
 
   # Tabla con los registros que se enviaran para su verificación.
 
-  Lista_Tablas_Observaciones <-
+  Lista.Tablas.Observaciones <-
     purrr::map2(
-      .x = Lista_Observaciones_x_Colector,
-      .y = Vector_Para_Filtro,
+      .x = Lista.Observaciones.x.Colector,
+      .y = Vector.Para.Filtro,
       .f = ~ dplyr::filter(.x, !.y))
 
-  Lista_Tablas_Observaciones <-
-    Lista_Tablas_Observaciones[!purrr::list_c(lapply(Lista_Tablas_Observaciones, plyr::empty))]
+  Lista.Tablas.Observaciones <-
+    Lista.Tablas.Observaciones[!purrr::list_c(lapply(Lista.Tablas.Observaciones, plyr::empty))]
 
-  for (i in seq_along(Lista_Tablas_Observaciones)) {
+  for (i in seq_along(Lista.Tablas.Observaciones)) {
 
-    Datos <- Lista_Tablas_Observaciones[[i]]
+    Datos <- Lista.Tablas.Observaciones[[i]]
     Nombre_Hoja <- Datos[[2]][1]
     nCol <- length(Datos)
     nRow <- nrow(Datos) + 1

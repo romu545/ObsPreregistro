@@ -2,8 +2,8 @@
 
 #' @name Obs_Nombre_Predio
 #'
-#' @param Datos_Evaluar Conjunto de datos para evaluar.
-#' @param Nom_Evaluar Vector con nombres que se tendrán en cuenta en la revisión.
+#' @param Datos.Evaluar Conjunto de datos para evaluar.
+#' @param Nom.Evaluar Vector con nombres que se tendrán en cuenta en la revisión.
 #'
 #' @description Esta función evalúa los nombres de los predios en donde no se evidenció
 #' actividad acuícola con el objeto de verificar que estos sean diligenciados con algún
@@ -18,10 +18,10 @@
 #' @export
 
 
-Obs_Nombre_Predio <- function(Datos_Evaluar, Nom_Evaluar) {
+Obs_Nombre_Predio <- function(Datos.Evaluar, Nom.Evaluar) {
 
-  Observaciones <- Datos_Evaluar |>
-    dplyr::filter(.data$predio %in% Nom_Evaluar[Nom_Evaluar != "no informa"]) |>
+  Observaciones <- Datos.Evaluar |>
+    dplyr::filter(.data$predio %in% Nom.Evaluar[Nom.Evaluar != "no informa"]) |>
     dplyr::transmute(
       'registro' = .data$registro,
       'Observaciones: Nombre predio' =

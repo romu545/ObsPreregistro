@@ -5,14 +5,14 @@
 \title{Exportar Observaciones Pre-regsitros Por Colector}
 \usage{
 Exportar_Observaciones_x_Colector(
-  Lista_Observaciones_x_Colector,
-  Vector_Para_Filtro
+  Lista.Observaciones.x.Colector,
+  Vector.Para.Filtro
 )
 }
 \arguments{
-\item{Lista_Observaciones_x_Colector}{Lista con las observaciones de cada colector.}
+\item{Lista.Observaciones.x.Colector}{Lista con las observaciones de cada colector.}
 
-\item{Vector_Para_Filtro}{Vector booleano para filtrar los pre-registros que si posean
+\item{Vector.Para.Filtro}{Vector booleano para filtrar los pre-registros que si posean
 observaciones
 param Semana Cadena de texto indicando la semana o semanas evaluadas.
   * `Semana_1`

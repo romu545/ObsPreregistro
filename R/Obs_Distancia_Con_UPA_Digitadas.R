@@ -2,8 +2,8 @@
 
 #' @name Obs_Distancia_Con_UPA_Digitadas
 #'
-#' @param Datos_Evaluar_SF Conjunto de datos para evaluar con características espaciales.
-#' @param Datos_Caracterizacion_SF Datos caracterización con características espaciales
+#' @param Datos.Evaluar.SF Conjunto de datos para evaluar con características espaciales.
+#' @param Datos.Caracterizacion.SF Datos caracterización con características espaciales
 #'
 #'
 #' @description Esta función permite generar observaciones cuando las coordenadas de los
@@ -24,17 +24,17 @@
 #' @export
 
 
-Obs_Distancia_Con_UPA_Digitadas <- function(Datos_Evaluar_SF, Datos_Caracterizacion_SF) {
+Obs_Distancia_Con_UPA_Digitadas <- function(Datos.Evaluar.SF, Datos.Caracterizacion.SF) {
 
   Join_Coordenadas_Preregitro_y_Digitadas <-
-    Datos_Evaluar_SF |>
-    dplyr::nest_join(y = Datos_Caracterizacion_SF, by = c("departamento", "municipio")) |>
-    tidyr::unnest(cols = c("Datos_Caracterizacion_SF"), names_sep = ".")
+    Datos.Evaluar.SF |>
+    dplyr::nest_join(y = Datos.Caracterizacion.SF, by = c("departamento", "municipio")) |>
+    tidyr::unnest(cols = c("Datos.Caracterizacion.SF"), names_sep = ".")
 
   Join_Coordenadas_Preregitro_y_Digitadas$distancia <-
     sf::st_distance(
       purrr::pluck(Join_Coordenadas_Preregitro_y_Digitadas, "geometry"),
-      purrr::pluck(Join_Coordenadas_Preregitro_y_Digitadas, "Datos_Caracterizacion_SF.geometry"),
+      purrr::pluck(Join_Coordenadas_Preregitro_y_Digitadas, "Datos.Caracterizacion.SF.geometry"),
       by_element = TRUE,
       which = "Great Circle") |>
     units::drop_units()
@@ -46,14 +46,14 @@ Obs_Distancia_Con_UPA_Digitadas <- function(Datos_Evaluar_SF, Datos_Caracterizac
       "anio",
       "diferentecodigoupa",
       "geometry",
-      "Datos_Caracterizacion_SF.geometry",
+      "Datos.Caracterizacion.SF.geometry",
       "altitud")) |>
     dplyr::filter(.data$distancia < 120) |>
     dplyr::arrange(.data$registro, .data$distancia) |>
-    dplyr::summarise(
+    dplyr::reframe(
       'n' = dplyr::n(),
       'distancias' =  glue::glue_collapse(round(.data$distancia,2), sep = ", ", last = " y "),
-      'codigos' =  glue::glue_collapse(.data$Datos_Caracterizacion_SF.codigoupa, sep = ", ", last = " y "),
+      'codigos' =  glue::glue_collapse(.data$Datos.Caracterizacion.SF.codigoupa, sep = ", ", last = " y "),
       .by = c("registro")) |>
     dplyr::transmute(
       'registro' = .data$registro,

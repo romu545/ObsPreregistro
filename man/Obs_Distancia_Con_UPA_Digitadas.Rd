@@ -4,12 +4,12 @@
 \alias{Obs_Distancia_Con_UPA_Digitadas}
 \title{Observaciones Distancia Entre UPA Pre-registradas y Digitadas}
 \usage{
-Obs_Distancia_Con_UPA_Digitadas(Datos_Evaluar_SF, Datos_Caracterizacion_SF)
+Obs_Distancia_Con_UPA_Digitadas(Datos.Evaluar.SF, Datos.Caracterizacion.SF)
 }
 \arguments{
-\item{Datos_Evaluar_SF}{Conjunto de datos para evaluar con características espaciales.}
+\item{Datos.Evaluar.SF}{Conjunto de datos para evaluar con características espaciales.}
 
-\item{Datos_Caracterizacion_SF}{Datos caracterización con características espaciales}
+\item{Datos.Caracterizacion.SF}{Datos caracterización con características espaciales}
 }
 \value{
 Retorna una tabla con el número de registro y sus respectivas observaciones.

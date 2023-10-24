@@ -4,10 +4,10 @@
 \alias{Lista_Observaciones_x_Colector}
 \title{Lista Observaciones Por Colector}
 \usage{
-Lista_Observaciones_x_Colector(Relacion_General_Observaciones)
+Lista_Observaciones_x_Colector(Relacion.General.Observaciones)
 }
 \arguments{
-\item{Relacion_General_Observaciones}{Conjunto de datos del consolidado general de observaciones}
+\item{Relacion.General.Observaciones}{Conjunto de datos del consolidado general de observaciones}
 }
 \value{
 Retorna una lista con las observaciones por cada colector

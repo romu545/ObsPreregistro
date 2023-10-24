@@ -3,8 +3,8 @@
 #' @name D_G_Caracterizacion_SF
 #' @param url Ruta al repositorio en donde se encuentra el informe referente a los datos
 #' generales de caracterización.
-#' @param Dptos_Evaluar Vector con los nombres de los departamentos objeto de monitoreo.
-#' @param Mpios_Evaluar Vector con los nombres de los municipios objeto de monitoreo.
+#' @param Dptos.Evaluar Vector con los nombres de los departamentos objeto de monitoreo.
+#' @param Mpios.Evaluar Vector con los nombres de los municipios objeto de monitoreo.
 #'
 #' @description
 #' El informe de caracterización es transformado a un archivo con Características
@@ -28,7 +28,7 @@
 #' @export
 #'
 #'
-D_G_Caracterizacion_SF <- function(url, Dptos_Evaluar, Mpios_Evaluar) {
+D_G_Caracterizacion_SF <- function(url, Dptos.Evaluar, Mpios.Evaluar) {
 
   datos_DC_SF <- vroom::vroom(
   file = url,
@@ -37,7 +37,7 @@ D_G_Caracterizacion_SF <- function(url, Dptos_Evaluar, Mpios_Evaluar) {
   col_types = "TdTDcccccdclcDDcccdccccccccccccccccciiiiiiiiclllcccddd",
   locale = vroom::locale(encoding = "UTF-8"),
   progress = FALSE) |>
-  dplyr::filter(.data$departamento %in% Dptos_Evaluar & .data$municipio %in% Mpios_Evaluar) |>
+  dplyr::filter(.data$departamento %in% Dptos.Evaluar & .data$municipio %in% Mpios.Evaluar) |>
   dplyr::select(c(
     "registro", "nombre", "codigoupa", "granja", "existe",
     "departamento", "municipio", "vereda", "predio",

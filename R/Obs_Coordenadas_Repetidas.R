@@ -2,7 +2,7 @@
 
 #' @name Obs_Codigo_Misma_UPA
 #'
-#' @param Datos_Evaluar Conjunto de datos para evaluar.
+#' @param Datos.Evaluar Conjunto de datos para evaluar.
 #'
 #' @description Esta función permite generar observaciones cuando existan más de dos
 #' pre-registros con las mismas coordenadas.
@@ -15,10 +15,10 @@
 #'
 #' @export
 
-Obs_Coordenadas_Repetidas <- function(Datos_Evaluar) {
+Obs_Coordenadas_Repetidas <- function(Datos.Evaluar) {
 
   Observaciones <-
-    Datos_Evaluar |>
+    Datos.Evaluar |>
   dplyr::filter(
     dplyr::n() > 1,
     .by = c("latitud", "longitud")) |>

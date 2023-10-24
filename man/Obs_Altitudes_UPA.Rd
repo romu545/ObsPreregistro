@@ -4,10 +4,10 @@
 \alias{Obs_Altitudes_UPA}
 \title{Observaciones Altitudes UPA}
 \usage{
-Obs_Altitudes_UPA(Datos_Elevacion)
+Obs_Altitudes_UPA(Datos.Elevacion)
 }
 \arguments{
-\item{Datos_Elevacion}{Conjunto de datos para evaluar con las elevaciones calculadas.}
+\item{Datos.Elevacion}{Conjunto de datos para evaluar con las elevaciones calculadas.}
 }
 \value{
 Retorna una tabla con el número de registro y sus respectivas observaciones.

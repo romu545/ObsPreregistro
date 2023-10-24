@@ -2,7 +2,7 @@
 
 #' @name Obs_Altitudes_UPA
 #'
-#' @param Datos_Elevacion Conjunto de datos para evaluar con las elevaciones calculadas.
+#' @param Datos.Elevacion Conjunto de datos para evaluar con las elevaciones calculadas.
 #'
 #' @description Esta función permite generar observaciones cuando las altitudes registradas
 #' quedan por fuera del intervalo generado mediante el modelo digital de elevación de AWS.
@@ -16,9 +16,9 @@
 #' @export
 
 
-Obs_Altitudes_UPA <- function(Datos_Elevacion) {
+Obs_Altitudes_UPA <- function(Datos.Elevacion) {
 
-   Observaciones <- Datos_Elevacion |>
+   Observaciones <- Datos.Elevacion |>
     dplyr::mutate(
       'Col_Aux_1' =
         dplyr::case_when(

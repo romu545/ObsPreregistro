@@ -4,10 +4,10 @@
 \alias{Vector_Para_Filtro}
 \title{Vector Booleano Para Filtro}
 \usage{
-Vector_Para_Filtro(Lista_Observaciones_x_Colector)
+Vector_Para_Filtro(Lista.Observaciones.x.Colector)
 }
 \arguments{
-\item{Lista_Observaciones_x_Colector}{Lista de observaciones de cada colector.}
+\item{Lista.Observaciones.x.Colector}{Lista de observaciones de cada colector.}
 }
 \value{
 Retorna un vector booleano

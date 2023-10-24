@@ -4,12 +4,12 @@
 \alias{Obs_Coordenadas_Preregistro_vs_Asignadas}
 \title{Observaciones UPA Pre-registro vs Asignadas}
 \usage{
-Obs_Coordenadas_Preregistro_vs_Asignadas(Datos_Evaluar_SF, UPA_Asignadas_SF)
+Obs_Coordenadas_Preregistro_vs_Asignadas(Datos.Evaluar.SF, UPA.Asignadas.SF)
 }
 \arguments{
-\item{Datos_Evaluar_SF}{Conjunto de datos para evaluar con características espaciales.}
+\item{Datos.Evaluar.SF}{Conjunto de datos para evaluar con características espaciales.}
 
-\item{UPA_Asignadas_SF}{Conjunto de datos de UPA asignadas con características espaciales.}
+\item{UPA.Asignadas.SF}{Conjunto de datos de UPA asignadas con características espaciales.}
 }
 \value{
 Retorna una tabla con el número de registro y sus respectivas observaciones.

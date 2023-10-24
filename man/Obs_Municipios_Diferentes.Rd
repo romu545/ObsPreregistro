@@ -4,12 +4,12 @@
 \alias{Obs_Municipios_Diferentes}
 \title{Observaciones Municipio Distinto}
 \usage{
-Obs_Municipios_Diferentes(Datos_Evaluar_SF, Mpio_shp)
+Obs_Municipios_Diferentes(Datos.Evaluar.SF, Mpio.shp)
 }
 \arguments{
-\item{Datos_Evaluar_SF}{Conjunto de datos para evaluar con características espaciales.}
+\item{Datos.Evaluar.SF}{Conjunto de datos para evaluar con características espaciales.}
 
-\item{Mpio_shp}{Capa de municipios}
+\item{Mpio.shp}{Capa de municipios}
 }
 \value{
 Retorna una tabla con el número de registro y sus respectivas observaciones.

@@ -2,8 +2,8 @@
 
 #' @name Obs_Coordenadas_Preregistro_vs_Asignadas
 #'
-#' @param Datos_Evaluar_SF Conjunto de datos para evaluar con características espaciales.
-#' @param UPA_Asignadas_SF Conjunto de datos de UPA asignadas con características espaciales.
+#' @param Datos.Evaluar.SF Conjunto de datos para evaluar con características espaciales.
+#' @param UPA.Asignadas.SF Conjunto de datos de UPA asignadas con características espaciales.
 #'
 #'
 #' @description Esta función permite generar observaciones cuando se encuentra alguna
@@ -25,42 +25,42 @@
 #' @export
 
 
-Obs_Coordenadas_Preregistro_vs_Asignadas <- function(Datos_Evaluar_SF, UPA_Asignadas_SF) {
+Obs_Coordenadas_Preregistro_vs_Asignadas <- function(Datos.Evaluar.SF, UPA.Asignadas.SF) {
 
   Join_Coordenadas_Preregistro_y_Asignadas <-
-    Datos_Evaluar_SF |>
-    dplyr::nest_join(y = UPA_Asignadas_SF, by = c("departamento", "municipio")) |>
-    tidyr::unnest(cols = c("UPA_Asignadas_SF"), names_sep = ".")
+    Datos.Evaluar.SF |>
+    dplyr::nest_join(y = UPA.Asignadas.SF, by = c("departamento", "municipio")) |>
+    tidyr::unnest(cols = c("UPA.Asignadas.SF"), names_sep = ".")
 
 
   Join_Coordenadas_Preregistro_y_Asignadas$distancia <-
   sf::st_distance(
     purrr::pluck(Join_Coordenadas_Preregistro_y_Asignadas, "geometry"),
-    purrr::pluck(Join_Coordenadas_Preregistro_y_Asignadas, "UPA_Asignadas_SF.geometry"),
+    purrr::pluck(Join_Coordenadas_Preregistro_y_Asignadas, "UPA.Asignadas.SF.geometry"),
     by_element = TRUE, which = "Great Circle") |>
   units::drop_units()
 
 Observaciones <-
   Join_Coordenadas_Preregistro_y_Asignadas |>
   tibble::tibble() |>
-  dplyr::select(c(
+  dplyr::select(
     "registro",
     "codigoupa",
-    "UPA_Asignadas_SF.codigoupa",
+    "UPA.Asignadas.SF.codigoupa",
     "diferentecodigoupa",
-    "distancia")) |>
+    "distancia") |>
   dplyr::mutate(
     'Col_Aux' = dplyr::case_when(
-      (.data$codigoupa == .data$UPA_Asignadas_SF.codigoupa & .data$distancia > 120) ~ 1,
-      (.data$codigoupa != .data$UPA_Asignadas_SF.codigoupa & .data$codigoupa != "Codigo 0" & .data$distancia < 50) ~ 2,
+      (.data$codigoupa == .data$UPA.Asignadas.SF.codigoupa & .data$distancia > 120) ~ 1,
+      (.data$codigoupa != .data$UPA.Asignadas.SF.codigoupa & .data$codigoupa != "Codigo 0" & .data$distancia < 50) ~ 2,
       (.data$codigoupa == "Codigo 0" & .data$distancia < 80) ~ 3),
     'diferentecodigoupa' = stringr::str_replace_na(.data$diferentecodigoupa, ""),
-    'Col_Aux_2' = stringr::str_detect(.data$diferentecodigoupa, as.character(.data$UPA_Asignadas_SF.codigoupa))) |>
+    'Col_Aux_2' = stringr::str_detect(.data$diferentecodigoupa, as.character(.data$UPA.Asignadas.SF.codigoupa))) |>
   dplyr::filter(!is.na(.data$Col_Aux) & !(.data$Col_Aux == 2 & .data$Col_Aux_2)) |>
   dplyr::filter() |>
-  dplyr::summarise(
+  dplyr::reframe(
     'n' = dplyr::n(),
-    'Col_Aux_3'= glue::glue_collapse(.data$UPA_Asignadas_SF.codigoupa, sep = ", ", last = " y "),
+    'Col_Aux_3'= glue::glue_collapse(.data$UPA.Asignadas.SF.codigoupa, sep = ", ", last = " y "),
     'distancia' = max(.data$distancia),
     .by = c(.data$registro, .data$codigoupa, .data$Col_Aux)) |>
   dplyr::transmute(

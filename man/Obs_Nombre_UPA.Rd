@@ -4,14 +4,14 @@
 \alias{Obs_Nombre_UPA}
 \title{Observaciones Nombre UPA}
 \usage{
-Obs_Nombre_UPA(Datos_Evaluar, Lista_Referencia_Nombres, Nom_No_Evaluar)
+Obs_Nombre_UPA(Datos.Evaluar, Lista.Referencia.Nombres, Nom.No.Evaluar)
 }
 \arguments{
-\item{Datos_Evaluar}{Conjunto de datos para evaluar.}
+\item{Datos.Evaluar}{Conjunto de datos para evaluar.}
 
-\item{Lista_Referencia_Nombres}{Listado de nombres catalogados como validados.}
+\item{Lista.Referencia.Nombres}{Listado de nombres catalogados como validados.}
 
-\item{Nom_No_Evaluar}{Vector con nombres que no se tendrán en cuenta en la revisión.}
+\item{Nom.No.Evaluar}{Vector con nombres que no se tendrán en cuenta en la revisión.}
 }
 \value{
 Retorna una tabla con el número de registro y sus respectivas observaciones.

@@ -4,12 +4,12 @@
 \alias{Obs_Nombre_UPA_Inexistente}
 \title{Observaciones Nombre UPA Inexistente}
 \usage{
-Obs_Nombre_UPA_Inexistente(Datos_Evaluar, Nom_No_Evaluar)
+Obs_Nombre_UPA_Inexistente(Datos.Evaluar, Nom.No.Evaluar)
 }
 \arguments{
-\item{Datos_Evaluar}{Conjunto de datos para evaluar.}
+\item{Datos.Evaluar}{Conjunto de datos para evaluar.}
 
-\item{Nom_No_Evaluar}{Vector con nombres que no se tendrán en cuenta en la revisión.}
+\item{Nom.No.Evaluar}{Vector con nombres que no se tendrán en cuenta en la revisión.}
 }
 \value{
 Retorna una tabla con el número de registro y sus respectivas observaciones.

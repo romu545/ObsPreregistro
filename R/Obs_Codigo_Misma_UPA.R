@@ -2,8 +2,8 @@
 
 #' @name Obs_Codigo_Misma_UPA
 #'
-#' @param Datos_Evaluar Conjunto de datos para evaluar.
-#' @param Datos_Preregistro Conjunto de datos de todos los pre-registros.
+#' @param Datos.Evaluar Conjunto de datos para evaluar.
+#' @param Datos.Preregistro Conjunto de datos de todos los pre-registros.
 #'
 #' @description Esta función evalúa que los códigos registrados en el campo para otros id
 #' para una misma UPA no hayan sido utilizados en algún pre-registro como el identificador
@@ -18,10 +18,10 @@
 #'
 #' @export
 
-Obs_Codigo_Misma_UPA <- function(Datos_Evaluar, Datos_Preregistro) {
+Obs_Codigo_Misma_UPA <- function(Datos.Evaluar, Datos.Preregistro) {
 
-  Codigos_Misma_UPA <-
-    Datos_Preregistro |>
+  Codigos.Misma.UPA <-
+    Datos.Preregistro |>
     dplyr::select(c("registro", "diferentecodigoupa")) |>
     tidyr::drop_na() |>
     tidyr::separate_wider_delim(
@@ -40,11 +40,11 @@ Obs_Codigo_Misma_UPA <- function(Datos_Evaluar, Datos_Preregistro) {
 
 
   Observaciones <-
-    Datos_Evaluar |>
+    Datos.Evaluar |>
     dplyr::filter(.data$codigoupa != "Codigo 0") |>
     dplyr::mutate('codigoupa' = as.double(.data$codigoupa)) |>
     dplyr::select(c("registro", "codigoupa")) |>
-    dplyr::inner_join(Codigos_Misma_UPA, by = dplyr::join_by("codigoupa")) |>
+    dplyr::inner_join(Codigos.Misma.UPA, by = dplyr::join_by("codigoupa")) |>
     dplyr::reframe(
       'registro.y' = glue::glue_collapse(.data$registro.y, sep = ", ", last = " y "),
       .by = c("registro.x", "codigoupa")) |>

@@ -2,8 +2,8 @@
 
 #' @name Obs_Coordenadas_En_Pregistros_Antiguos
 #'
-#' @param Datos_Evaluar Conjunto de datos para evaluar.
-#' @param Preregistros_Antiguos Conjusto de datos de los pre-registros evaluados en cortes
+#' @param Datos.Evaluar Conjunto de datos para evaluar.
+#' @param Preregistros.Antiguos Conjusto de datos de los pre-registros evaluados en cortes
 #' anteriores
 #'
 #' @description Esta función permite generar observaciones cuando las coordenadas de los
@@ -21,18 +21,18 @@
 #' @export
 
 
-Obs_Coordenadas_En_Pregistros_Antiguos <- function(Datos_Evaluar, Preregistros_Antiguos) {
+Obs_Coordenadas_En_Pregistros_Antiguos <- function(Datos.Evaluar, Preregistros.Antiguos) {
 
   Observaciones <-
-    Datos_Evaluar |>
-    dplyr::nest_join(y = Preregistros_Antiguos, by = c("latitud", "longitud")) |>
-    dplyr::mutate('es_vacio' = purrr::map_lgl(.data$Preregistros_Antiguos, plyr::empty)) |>
+    Datos.Evaluar |>
+    dplyr::nest_join(y = Preregistros.Antiguos, by = c("latitud", "longitud")) |>
+    dplyr::mutate('es_vacio' = purrr::map_lgl(.data$Preregistros.Antiguos, plyr::empty)) |>
     dplyr::filter(!.data$es_vacio) |>
     dplyr::transmute(
       'registro' = .data$registro,
       'registro_antiguo' =
         purrr::map_chr(
-          .x = .data$Preregistros_Antiguos,
+          .x = .data$Preregistros.Antiguos,
           .f = ~glue::glue_collapse(.x, sep = ", ", last = " y ")),
       'Observaciones: Coordenadas repetidas con registros antiguos' =
         glue::glue(

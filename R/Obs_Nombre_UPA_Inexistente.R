@@ -2,8 +2,8 @@
 
 #' @name Obs_Nombre_UPA_Inexistente
 #'
-#' @param Datos_Evaluar Conjunto de datos para evaluar.
-#' @param Nom_No_Evaluar Vector con nombres que no se tendrán en cuenta en la revisión.
+#' @param Datos.Evaluar Conjunto de datos para evaluar.
+#' @param Nom.No.Evaluar Vector con nombres que no se tendrán en cuenta en la revisión.
 #'
 #' @description Esta función evalúa los nombres de los sitios en donde no se evidenció
 #' activida acuicola con el objeto de verificar que estos sean diligenciado como
@@ -18,10 +18,10 @@
 #' @export
 
 
-Obs_Nombre_UPA_Inexistente <- function(Datos_Evaluar, Nom_No_Evaluar) {
+Obs_Nombre_UPA_Inexistente <- function(Datos.Evaluar, Nom.No.Evaluar) {
 
-  Observacion_1 <- Datos_Evaluar |>
-      dplyr::filter(.data$existe == "No", !.data$nombreupa %in% Nom_No_Evaluar) |>
+  Observacion_1 <- Datos.Evaluar |>
+      dplyr::filter(.data$existe == "No", !.data$nombreupa %in% Nom.No.Evaluar) |>
       dplyr::transmute(
         'registro' = .data$registro,
         'Observaciones: Nombre UPA inexistente' =
@@ -29,8 +29,8 @@ Obs_Nombre_UPA_Inexistente <- function(Datos_Evaluar, Nom_No_Evaluar) {
                      "en el formulario debe ser 'La UPA no existe'.\n",
                      "RESPUESTA DEL COLECTOR:"))
 
-  Observacion_2 <- Datos_Evaluar |>
-    dplyr::filter(.data$existe == "Sí", .data$nombreupa %in% Nom_No_Evaluar[Nom_No_Evaluar != "no informa"]) |>
+  Observacion_2 <- Datos.Evaluar |>
+    dplyr::filter(.data$existe == "Sí", .data$nombreupa %in% Nom.No.Evaluar[Nom.No.Evaluar != "no informa"]) |>
     dplyr::transmute(
       'registro' = .data$registro,
       'Observaciones: Nombre UPA inexistente' =

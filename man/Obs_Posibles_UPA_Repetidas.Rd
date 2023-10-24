@@ -4,12 +4,12 @@
 \alias{Obs_Posibles_UPA_Repetidas}
 \title{Observaciones Posibles UPA Repetidas}
 \usage{
-Obs_Posibles_UPA_Repetidas(Datos_Evaluar, Nom_No_Evaluar)
+Obs_Posibles_UPA_Repetidas(Datos.Evaluar, Nom.No.Evaluar)
 }
 \arguments{
-\item{Datos_Evaluar}{Conjunto de datos para evaluar.}
+\item{Datos.Evaluar}{Conjunto de datos para evaluar.}
 
-\item{Nom_No_Evaluar}{Vector con nombres que no se tendrán en cuenta en la revisión.}
+\item{Nom.No.Evaluar}{Vector con nombres que no se tendrán en cuenta en la revisión.}
 }
 \value{
 Retorna una tabla con el número de registro y sus respectivas observaciones.

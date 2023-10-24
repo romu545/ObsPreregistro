@@ -11,15 +11,15 @@ Un marco de datos de tipo SF con 13 columnas y filas variables.
 Local
 }
 \usage{
-D_G_Caracterizacion_SF(url, Dptos_Evaluar, Mpios_Evaluar)
+D_G_Caracterizacion_SF(url, Dptos.Evaluar, Mpios.Evaluar)
 }
 \arguments{
 \item{url}{Ruta al repositorio en donde se encuentra el informe referente a los datos
 generales de caracterización.}
 
-\item{Dptos_Evaluar}{Vector con los nombres de los departamentos objeto de monitoreo.}
+\item{Dptos.Evaluar}{Vector con los nombres de los departamentos objeto de monitoreo.}
 
-\item{Mpios_Evaluar}{Vector con los nombres de los municipios objeto de monitoreo.}
+\item{Mpios.Evaluar}{Vector con los nombres de los municipios objeto de monitoreo.}
 }
 \description{
 El informe de caracterización es transformado a un archivo con Características

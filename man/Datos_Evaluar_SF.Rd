@@ -4,10 +4,10 @@
 \alias{Datos_Evaluar_SF}
 \title{Datos Pre-registro Evaluar SF}
 \usage{
-Datos_Evaluar_SF(Datos_Evaluar)
+Datos_Evaluar_SF(Datos.Evaluar)
 }
 \arguments{
-\item{Datos_Evaluar}{Conjunto de datos para evaluar.}
+\item{Datos.Evaluar}{Conjunto de datos para evaluar.}
 }
 \value{
 Retorna el conjunto de datos de los pre-registros evaluados con características

@@ -4,12 +4,12 @@
 \alias{Obs_Coordenadas_En_Pregistros_Antiguos}
 \title{Observaciones Coordenadas En Pre-registros Antiguos}
 \usage{
-Obs_Coordenadas_En_Pregistros_Antiguos(Datos_Evaluar, Preregistros_Antiguos)
+Obs_Coordenadas_En_Pregistros_Antiguos(Datos.Evaluar, Preregistros.Antiguos)
 }
 \arguments{
-\item{Datos_Evaluar}{Conjunto de datos para evaluar.}
+\item{Datos.Evaluar}{Conjunto de datos para evaluar.}
 
-\item{Preregistros_Antiguos}{Conjusto de datos de los pre-registros evaluados en cortes
+\item{Preregistros.Antiguos}{Conjusto de datos de los pre-registros evaluados en cortes
 anteriores}
 }
 \value{

@@ -4,10 +4,10 @@
 \alias{Relacion_General_Observaciones}
 \title{Consolidado General Observaciones}
 \usage{
-Relacion_General_Observaciones(Datos_Evaluar)
+Relacion_General_Observaciones(Datos.Evaluar)
 }
 \arguments{
-\item{Datos_Evaluar}{Conjunto de datos para evaluar}
+\item{Datos.Evaluar}{Conjunto de datos para evaluar}
 }
 \value{
 Retorna una tabla con todos los registros evaluados y sus respectivas observaciones

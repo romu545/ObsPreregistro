@@ -4,12 +4,12 @@
 \alias{Obs_Nombre_Predio}
 \title{Observaciones Nombre Predio}
 \usage{
-Obs_Nombre_Predio(Datos_Evaluar, Nom_Evaluar)
+Obs_Nombre_Predio(Datos.Evaluar, Nom.Evaluar)
 }
 \arguments{
-\item{Datos_Evaluar}{Conjunto de datos para evaluar.}
+\item{Datos.Evaluar}{Conjunto de datos para evaluar.}
 
-\item{Nom_Evaluar}{Vector con nombres que se tendrán en cuenta en la revisión.}
+\item{Nom.Evaluar}{Vector con nombres que se tendrán en cuenta en la revisión.}
 }
 \value{
 Retorna una tabla con el número de registro y sus respectivas observaciones.
