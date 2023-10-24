@@ -29,8 +29,8 @@ Exportar_Encuestas_Para_Habilitar <- function(
     Vector.Para.Filtro) {
 
   purrr::map2(
-    .x = Lista_Observaciones_x_Colector,
-    .y = Vector_Para_Filtro,
+    .x = Lista.Observaciones.x.Colector,
+    .y = Vector.Para.Filtro,
     .f = ~ dplyr::filter(dplyr::select(.x, !tidyselect::starts_with("Obs")), .y)) |>
     purrr::list_rbind() |>
     dplyr::mutate('habilitada' = "v") |>
