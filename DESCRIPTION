@@ -24,7 +24,6 @@ Imports:
     units (>= 0.8-2),
     writexl (>= 1.4.2),
     openxlsx (>= 4.2.5.2),
-    collapse (>= 2.0.3),
     lubridate (>= 1.9.3)
 License: GPL-3
 Encoding: UTF-8

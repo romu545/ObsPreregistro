@@ -1,5 +1,3 @@
-pacman::p_load(sf, dplyr, tidyr, stringr, purrr, ggplot2)
-
 #' @title Observaciones Coordenadas Fuera Ruta
 
 #' @name Obs_Coordenadas_Fuera_Ruta
@@ -18,7 +16,6 @@ pacman::p_load(sf, dplyr, tidyr, stringr, purrr, ggplot2)
 #'
 #' @importFrom rlang set_names
 #' @importFrom rlang .data
-#' @importFrom collapse unlist2d
 #' @importFrom sf st_read
 #' @importFrom sf st_as_sf
 #' @importFrom sf st_buffer
@@ -26,6 +23,7 @@ pacman::p_load(sf, dplyr, tidyr, stringr, purrr, ggplot2)
 #' @importFrom sf st_make_valid
 #' @importFrom sf st_filter
 #' @importFrom sf st_disjoint
+#' @importFrom  sf st_is_empty
 #' @importFrom dplyr select
 #' @importFrom dplyr mutate
 #' @importFrom dplyr last_col
@@ -42,49 +40,44 @@ pacman::p_load(sf, dplyr, tidyr, stringr, purrr, ggplot2)
 Obs_Coordenadas_Fuera_Ruta <- function(
         datos.evaluar.sf,
         ruta.archivos.gpx,
-        fecha.rutas,
+        fecha.tracks,
         buffer = 20) {
-
-    colectores <-  dir(ruta.archivos.gpx) |> stringr::str_remove_all(".gpx|.GPX")
 
     tracks.colectores <-
         lapply(
-            dir(ruta_1, full.names = TRUE),
+            dir(ruta.archivos.gpx, full.names = TRUE),
             sf::st_read, layer = "tracks") |>
-        rlang::set_names(colectores) |>
-        collapse::unlist2d(idcols = "colector") |>
-        dplyr::select(1, 2, dplyr::last_col()) |>
+        dplyr::bind_rows() |>
         dplyr::mutate(
-            'name' =
-                stringr::str_extract_all(name, "\\b\\d{2}\\s\\w{3}\\s\\d{4}\\b") |>
+            'fechas' =
+                stringr::str_extract_all(
+                    .data$name, "\\b\\d{2}\\s\\w{3}\\s\\d{4}\\b") |>
                 stringr::str_replace_all(
                     pattern = c(
                         " ENE " = "01", " FEB " = "02", " MAR " = "03", " ABR " = "04",
                         " MAY " = "05", " JUN " = "06", " JUL " = "07", " AGO " = "08",
                         " SEP " = "09", " OCT " = "10", " NOV " = "11", " DIC " = "12")) |>
                 lubridate::dmy()) |>
-        dplyr::filter(name >= fecha.rutas) |>
-        tidyr::separate_wider_delim(
-            colector,
-            delim = "_",
-            names = c("colector", "semana")) |>
-        sf::st_as_sf() |>
+        dplyr::filter(.data$fechas >= fecha.tracks) |>
         sf::st_buffer(buffer) |>
         sf::st_union() |>
-        sf::st_make_valid()
+        sf::st_make_valid() |>
+        (\(data) {data[!sf::st_is_empty(data)]})()
 
-    Rev.pt.fruera.ruta <- sf::st_filter(
+    rev.pt.fruera.ruta <- sf::st_filter(
         datos.evaluar.sf,
         tracks.colectores,
         .predicate = sf::st_disjoint) |>
+        tibble::as_tibble() |>
         dplyr::mutate(
             'registro' = .data$registro,
             'Observaciones: Coordenadas fuera de ruta' = stringr::str_c(
                 "Las coordenadas de este registro se encuentran alejadas de la ruta recorrida. ",
                 "Verificar si existe algún error en las coordenadas o que el archivo GPX cargado",
                 "corresponde a la semana evaluda.\n",
-                "RESPUESTA DEL COLECTOR:"))
+                "RESPUESTA DEL COLECTOR:"),
+            .keep = "none")
 
-    invisible(Rev.pt.fruera.ruta)
+    invisible(rev.pt.fruera.ruta)
 
 }
