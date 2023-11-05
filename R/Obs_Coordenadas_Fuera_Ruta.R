@@ -71,6 +71,7 @@ Obs_Coordenadas_Fuera_Ruta <- function(
         tibble::as_tibble() |>
         dplyr::mutate(
             'registro' = .data$registro,
+            .data$colector,
             'Observaciones: Coordenadas fuera de ruta' = stringr::str_c(
                 "Las coordenadas de este registro se encuentran alejadas de la ruta recorrida. ",
                 "Verificar si existe algún error en las coordenadas o que el archivo GPX cargado",
