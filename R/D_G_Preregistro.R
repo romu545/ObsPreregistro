@@ -21,7 +21,7 @@ D_G_Preregistro <- function(url) {
     delim = ";",
     show_col_types = FALSE,
     col_types = "dDTdccccccccccccdddcccccc",
-    locale = vroom::locale(encoding = "WINDOWS-1252"),
+    locale = vroom::locale(encoding = "UTF-8"),
     progress = FALSE) |>
   dplyr::select(!c(
     "habilitada",

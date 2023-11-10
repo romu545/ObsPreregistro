@@ -74,7 +74,7 @@ Obs_Coordenadas_Fuera_Ruta <- function(
             .data$colector,
             'Observaciones: Coordenadas fuera de ruta' = stringr::str_c(
                 "Las coordenadas de este registro se encuentran alejadas de la ruta recorrida. ",
-                "Verificar si existe algún error en las coordenadas o que el archivo GPX cargado",
+                "Verificar si existe algún error en las coordenadas o que el archivo GPX cargado ",
                 "corresponde a la semana evaluda.\n",
                 "RESPUESTA DEL COLECTOR:"),
             .keep = "none")
