@@ -23,8 +23,7 @@
 
 Obs_Coordenadas_En_Pregistros_Antiguos <- function(Datos.Evaluar, Preregistros.Antiguos) {
 
-  Observaciones <-
-    Datos.Evaluar |>
+  Rev.Coordenadas.En.Pregistros.Antiguos <- Datos.Evaluar |>
     dplyr::nest_join(y = Preregistros.Antiguos, by = c("latitud", "longitud")) |>
     dplyr::mutate('es_vacio' = purrr::map_lgl(.data$Preregistros.Antiguos, plyr::empty)) |>
     dplyr::filter(!.data$es_vacio) |>
@@ -42,6 +41,6 @@ Obs_Coordenadas_En_Pregistros_Antiguos <- function(Datos.Evaluar, Preregistros.A
           "correctas.\nRESPUESTA DEL COLECTOR:")) |>
     dplyr::select(-2)
 
-  invisible(Observaciones)
+  invisible(Rev.Coordenadas.En.Pregistros.Antiguos)
 
 }

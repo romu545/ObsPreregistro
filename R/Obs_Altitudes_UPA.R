@@ -18,7 +18,7 @@
 
 Obs_Altitudes_UPA <- function(Datos.Elevacion) {
 
-   Observaciones <- Datos.Elevacion |>
+  Rev.Altitudes.UPA <- Datos.Elevacion |>
     dplyr::mutate(
       'Col_Aux_1' =
         dplyr::case_when(
@@ -40,6 +40,6 @@ Obs_Altitudes_UPA <- function(Datos.Elevacion) {
           "Verificar este dato o en su defecto los respectivos valores de longitud y latitud.\n",
           "RESPUESTA DEL COLECTOR:"))
 
-  invisible(Observaciones)
+  invisible(Rev.Altitudes.UPA)
 
 }

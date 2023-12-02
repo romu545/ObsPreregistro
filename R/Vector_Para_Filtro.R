@@ -23,12 +23,12 @@ Vector_Para_Filtro <- function(Lista.Observaciones.x.Colector) {
   # Determinar las filas y columnas que cuentan con observaciones, esto se hace para cada
   #  uno de los dataset de la lista-
 
-  Filas_Con_Observaciones <-
+  Filas.Con.Observaciones <-
     purrr::map(
       .x = Lista.Observaciones.x.Colector,
       .f = ~ rowSums(is.na(dplyr::select(.x, tidyselect::starts_with("Obs")))))
 
-  Columnas_Con_Observaciones <-
+  Columnas.Con.Observaciones <-
     purrr::map(
       .x = Lista.Observaciones.x.Colector,
       .f = ~ length(dplyr::select(.x, tidyselect::starts_with("Obs"))))
@@ -37,10 +37,10 @@ Vector_Para_Filtro <- function(Lista.Observaciones.x.Colector) {
   # los mismos objeto para así definir que registros se habilitaran y que otros
   # se enviaran para la revisión de los colectores.
 
-  Para_Filtro <- purrr::map2(
-    .x = Filas_Con_Observaciones,
-    .y = Columnas_Con_Observaciones,
+  Para.Filtro <- purrr::map2(
+    .x = Filas.Con.Observaciones,
+    .y = Columnas.Con.Observaciones,
     .f = ~ .x == .y)
 
-  invisible(Para_Filtro)
+  invisible(Para.Filtro)
 }

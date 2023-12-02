@@ -20,7 +20,7 @@
 
 Obs_Municipios_Diferentes <- function(Datos.Evaluar.SF, Mpio.shp) {
 
-  Geometrias_Intersectadas <-
+  Geometrias.Intersectadas <-
     sf::st_join(
       x = Datos.Evaluar.SF,
       y = Mpio.shp,
@@ -28,7 +28,7 @@ Obs_Municipios_Diferentes <- function(Datos.Evaluar.SF, Mpio.shp) {
     tibble::as_tibble()
 
   Observaciones <-
-    Geometrias_Intersectadas |>
+    Geometrias.Intersectadas |>
     dplyr::filter(
       (tolower(.data$municipio) != tolower(.data$MPIO_CNMBR)) |
         (tolower(.data$departamento) != tolower(.data$DPTO_CNMBR))) |>

@@ -9,7 +9,9 @@
 #'
 #' @return Retorna una lista con las observaciones por cada colector
 #'
-#' @import dplyr
+#' @importFrom dplyr group_by
+#' @importFrom dplyr group_map
+#' @importFrom dplyr select_if
 #' @importFrom rlang .data
 #'
 #' @export
@@ -18,8 +20,7 @@
 
 Lista_Observaciones_x_Colector <- function(Relacion.General.Observaciones) {
 
-  Observaciones.x.Colector <-
-    Relacion.General.Observaciones |>
+  Observaciones.x.Colector <- Relacion.General.Observaciones |>
     dplyr::group_by(.data$colector, .add = TRUE) |>
     dplyr::group_map(.f = ~ dplyr::select_if(.x, ~ !all(is.na(.))), .keep = TRUE)
 

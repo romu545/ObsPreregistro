@@ -3,7 +3,7 @@
 #' @name Obs_Veredas_Diferentes
 #'
 #' @param Datos.Evaluar.SF Conjunto de datos para evaluar con características espaciales.
-#' @param Verda.shp Capa de veredas
+#' @param Vereda.shp Capa de veredas
 #'
 #' @description Esta función permite generar observaciones cuando las coordenadas ubican
 #' a la upa pre-registrada en una vereda distinta a la seleccionada.
@@ -20,7 +20,7 @@
 
 Obs_Veredas_Diferentes <- function(Datos.Evaluar.SF, Vereda.shp) {
 
-  Geometrias_Intersectadas <-
+  Geometrias.Intersectadas <-
     sf::st_join(
       x = Datos.Evaluar.SF,
       y = Vereda.shp,
@@ -28,7 +28,7 @@ Obs_Veredas_Diferentes <- function(Datos.Evaluar.SF, Vereda.shp) {
     tibble::as_tibble()
 
   Observaciones <-
-    Geometrias_Intersectadas |>
+    Geometrias.Intersectadas |>
     dplyr::filter(tolower(.data$vereda) != tolower(.data$NOMBRE_VER)) |>
     dplyr::transmute(
       'registro' = .data$registro,

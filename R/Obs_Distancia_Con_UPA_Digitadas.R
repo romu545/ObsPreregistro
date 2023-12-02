@@ -26,21 +26,21 @@
 
 Obs_Distancia_Con_UPA_Digitadas <- function(Datos.Evaluar.SF, Datos.Caracterizacion.SF) {
 
-  Join_Coordenadas_Preregitro_y_Digitadas <-
+  Join.Coordenadas.Preregitro.y.Digitadas <-
     Datos.Evaluar.SF |>
     dplyr::nest_join(y = Datos.Caracterizacion.SF, by = c("departamento", "municipio")) |>
     tidyr::unnest(cols = c("Datos.Caracterizacion.SF"), names_sep = ".")
 
-  Join_Coordenadas_Preregitro_y_Digitadas$distancia <-
+  Join.Coordenadas.Preregitro.y.Digitadas$distancia <-
     sf::st_distance(
-      purrr::pluck(Join_Coordenadas_Preregitro_y_Digitadas, "geometry"),
-      purrr::pluck(Join_Coordenadas_Preregitro_y_Digitadas, "Datos.Caracterizacion.SF.geometry"),
+      purrr::pluck(Join.Coordenadas.Preregitro.y.Digitadas, "geometry"),
+      purrr::pluck(Join.Coordenadas.Preregitro.y.Digitadas, "Datos.Caracterizacion.SF.geometry"),
       by_element = TRUE,
       which = "Great Circle") |>
     units::drop_units()
 
   Observaciones <-
-    Join_Coordenadas_Preregitro_y_Digitadas  |>
+    Join.Coordenadas.Preregitro.y.Digitadas  |>
     tibble::as_tibble() |>
     dplyr::select(!c(
       "anio",

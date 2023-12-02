@@ -1,7 +1,7 @@
 Package: ObsPreregistro
 Type: Package
 Title: Observaciones datos pre-registro
-Version: 0.1.3
+Version: 0.2.3
 Authors@R: person("Rafael", "Mendoza", email = "romu545@gmail.com",
   role = c("aut", "cre"))
 Maintainer: Mendoza-Ureche R. <romu545@gmail.com>

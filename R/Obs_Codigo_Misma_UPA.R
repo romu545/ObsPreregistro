@@ -20,8 +20,7 @@
 
 Obs_Codigo_Misma_UPA <- function(Datos.Evaluar, Datos.Preregistro) {
 
-  Codigos.Misma.UPA <-
-    Datos.Preregistro |>
+  Codigos.Misma.UPA <- Datos.Preregistro |>
     dplyr::select(c("registro", "diferentecodigoupa")) |>
     tidyr::drop_na() |>
     tidyr::separate_wider_delim(
@@ -39,8 +38,7 @@ Obs_Codigo_Misma_UPA <- function(Datos.Evaluar, Datos.Preregistro) {
     dplyr::mutate('codigoupa' = as.double(.data$codigoupa))
 
 
-  Observaciones <-
-    Datos.Evaluar |>
+  Rev.Codigo.Misma.UPA <- Datos.Evaluar |>
     dplyr::filter(.data$codigoupa != "Codigo 0") |>
     dplyr::mutate('codigoupa' = as.double(.data$codigoupa)) |>
     dplyr::select(c("registro", "codigoupa")) |>
@@ -56,6 +54,6 @@ Obs_Codigo_Misma_UPA <- function(Datos.Evaluar, Datos.Preregistro) {
           "en la misma UPA' en el/los pre-registro(s) {registro.y}.\n",
           "RESPUESTA DEL COLECTOR:"))
 
-  invisible(Observaciones)
+  invisible(Rev.Codigo.Misma.UPA)
 
 }

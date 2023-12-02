@@ -27,21 +27,21 @@
 
 Obs_Coordenadas_Preregistro_vs_Asignadas <- function(Datos.Evaluar.SF, UPA.Asignadas.SF) {
 
-  Join_Coordenadas_Preregistro_y_Asignadas <-
+  Join.Coordenadas.Preregistro.y.Asignadas <-
     Datos.Evaluar.SF |>
     dplyr::nest_join(y = UPA.Asignadas.SF, by = c("departamento", "municipio")) |>
     tidyr::unnest(cols = c("UPA.Asignadas.SF"), names_sep = ".")
 
 
-  Join_Coordenadas_Preregistro_y_Asignadas$distancia <-
+  Join.Coordenadas.Preregistro.y.Asignadas$distancia <-
   sf::st_distance(
-    purrr::pluck(Join_Coordenadas_Preregistro_y_Asignadas, "geometry"),
-    purrr::pluck(Join_Coordenadas_Preregistro_y_Asignadas, "UPA.Asignadas.SF.geometry"),
+    purrr::pluck(Join.Coordenadas.Preregistro.y.Asignadas, "geometry"),
+    purrr::pluck(Join.Coordenadas.Preregistro.y.Asignadas, "UPA.Asignadas.SF.geometry"),
     by_element = TRUE, which = "Great Circle") |>
   units::drop_units()
 
 Observaciones <-
-  Join_Coordenadas_Preregistro_y_Asignadas |>
+  Join.Coordenadas.Preregistro.y.Asignadas |>
   tibble::tibble() |>
   dplyr::select(
     "registro",
